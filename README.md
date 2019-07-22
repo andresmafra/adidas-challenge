@@ -38,5 +38,4 @@ http://localhost:8761
 The applications `ItineraryManager` and `ItineraryCalculator` should appear on instances list.
 
 # Executing the APIs
-For running the apis, follow the postman collections
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/41e60256e5e04115f730)
