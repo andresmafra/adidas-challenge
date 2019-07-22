@@ -1,0 +1,29 @@
+server:
+    port: 8080
+
+logging:
+  level:
+    org.springframework.web: INFO
+    com.adidas.itinerarymanager: DEBUG
+
+spring:
+  application:
+      name: "ItineraryManager"
+  data:
+    mongodb:
+      hostname: mongodb
+      port: 27017
+      db: dbItinerary
+      timeout: 5000
+      uri: "mongodb://${spring.data.mongodb.hostname}:${spring.data.mongodb.port}/${spring.data.mongodb.db}?serverSelectionTimeoutMS=${spring.data.mongodb.timeout}&connectTimeoutMS=${spring.data.mongodb.timeout}"
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka
+  instance:
+    preferIpAddress: true
+    hostname: eureka-server
+    port: 8761

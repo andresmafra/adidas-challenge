@@ -1,0 +1,25 @@
+version: "3"
+services:
+  mongodb:
+    image: mongo:3.6
+    container_name: "mongodb"
+    ports:
+      - 27017:27017
+    command: --smallfiles
+  eureka-server:
+    image: springcloud/eureka
+    ports:
+      - 8761:8761
+  it-manager:
+    image: adidas-itinerary-manager/itinerary-manager
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongodb
+      - eureka-server
+  it-calculator:
+    image: adidas-itinerary-calculator/itinerary-calculator
+    ports:
+      - 8081:8081
+    depends_on:
+      - eureka-server
