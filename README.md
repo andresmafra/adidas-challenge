@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/andresmafra/adidas-challenge/assets/adidas-dark.png" height="50">
+<img src="https://raw.githubusercontent.com/andresmafra/adidas-challenge/master/assets/adidas-dark.png" height="50">
 
 # Adidas Challenge Code
 This solution is based on Eureka as Discovery Service, Spring Cloud, MongoDB as NOSql database and Docker as a PAAS. The architecture is explained on the presentation below:
