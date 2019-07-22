@@ -23,7 +23,7 @@ All the documentation regarding this module can be found on it's [README](https:
 * Maven 3.3
 
 ## Instalation and Execution
-The modules are served in a separated docker instance. First of all, you need to build each module (Manager and Calculator) with `mvn` command below.
+The modules are served in a separated docker instance. First of all, you need to build each module (Manager and Calculator). For that, enter in each module main folder and run the command below.
 
 ```sh
 $ mvn install dockerfile:build
