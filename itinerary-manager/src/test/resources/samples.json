@@ -1,0 +1,26 @@
+[
+  {
+    "city": "São Paulo",
+    "destinyCity": "Curitiba",
+    "departureTime": "12:00",
+    "arrivalTime": "13:00"
+  },
+  {
+    "city": "São Paulo",
+    "destinyCity": "Floripa",
+    "departureTime": "12:00",
+    "arrivalTime": "15:00"
+  },
+  {
+    "city": "Curitiba",
+    "destinyCity": "Floripa",
+    "departureTime": "13:00",
+    "arrivalTime": "14:00"
+  },
+  {
+    "city": "Floripa",
+    "destinyCity": "Porto Alegre",
+    "departureTime": "15:00",
+    "arrivalTime": "16:00"
+  }
+]
