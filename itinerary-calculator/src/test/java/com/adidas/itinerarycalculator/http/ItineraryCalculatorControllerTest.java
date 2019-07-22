@@ -1,6 +1,7 @@
 package com.adidas.itinerarycalculator.http;
 
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import com.adidas.itinerarycalculator.domains.CalculateMode;
 import com.adidas.itinerarycalculator.domains.ItineraryOutput;
 import com.adidas.itinerarycalculator.exceptions.ResourceNotFoundException;
 import com.adidas.itinerarycalculator.http.json.CityInputJson;
@@ -19,7 +20,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static br.com.six2six.fixturefactory.Fixture.from;
-import static com.adidas.itinerarycalculator.domains.CalculateMode.CONNECTIONS;
 import static com.adidas.itinerarycalculator.domains.CalculateMode.TIME;
 import static com.adidas.itinerarycalculator.templates.ItineraryOutputTemplates.SPPA;
 import static com.adidas.itinerarycalculator.templates.ItineraryOutputTemplates.SPPA_2;
@@ -66,11 +66,11 @@ public class ItineraryCalculatorControllerTest {
                 .thenReturn(from(ItineraryOutput.class).gimme(SPPA));
 
         final MvcResult mvcResult = mockMvc.perform(post(API_PATH)
-                .header("Method", CONNECTIONS)
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsString(CityInputJson.builder()
                         .from("SP")
                         .to("PA")
+                        .mode(CalculateMode.CONNECTIONS.toString())
                         .build())))
                 .andReturn();
 
@@ -92,6 +92,7 @@ public class ItineraryCalculatorControllerTest {
                 .content(objectMapper.writeValueAsString(CityInputJson.builder()
                         .from("SP")
                         .to("PA")
+                        .mode(CalculateMode.TIME.toString())
                         .build())))
                 .andReturn();
 
@@ -108,11 +109,11 @@ public class ItineraryCalculatorControllerTest {
                 .thenThrow(new ResourceNotFoundException("not found!"));
 
         final MvcResult mvcResult = mockMvc.perform(post(API_PATH)
-                .header("Method", CONNECTIONS)
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsString(CityInputJson.builder()
                         .from("SP")
                         .to("PA")
+                        .mode(CalculateMode.TIME.toString())
                         .build())))
                 .andReturn();
 
@@ -122,10 +123,23 @@ public class ItineraryCalculatorControllerTest {
     @Test
     public void calculate_itinerary_bad_request() throws Exception {
         final MvcResult mvcResult = mockMvc.perform(post(API_PATH)
-                .header("Method", CONNECTIONS)
                 .contentType(APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsString(CityInputJson.builder()
                         .from("SP")
+                        .build())))
+                .andReturn();
+
+        assertThat(mvcResult.getResponse().getStatus(), is(BAD_REQUEST.value()));
+    }
+
+    @Test
+    public void calculate_itinerary_mode_bad_request() throws Exception {
+        final MvcResult mvcResult = mockMvc.perform(post(API_PATH)
+                .contentType(APPLICATION_JSON_UTF8)
+                .content(objectMapper.writeValueAsString(CityInputJson.builder()
+                        .from("SP")
+                        .to("PA")
+                        .mode("KONECTIOM")
                         .build())))
                 .andReturn();
 

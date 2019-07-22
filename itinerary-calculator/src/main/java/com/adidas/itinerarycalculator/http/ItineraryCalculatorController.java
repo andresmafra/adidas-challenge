@@ -13,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,16 +41,15 @@ public class ItineraryCalculatorController {
     })
     @PostMapping
     @ResponseStatus(OK)
-    public ItineraryOutput calculate(@RequestHeader("Method") final String method,
-                                     @Valid @RequestBody final CityInputJson input) {
+    public ItineraryOutput calculate(@Valid @RequestBody final CityInputJson input) {
+        log.debug("Calculating best itinerary based on mode: {}", input.getMode());
         final CalculateMode mode;
         try {
-            mode = CalculateMode.valueOf(method);
+            mode = CalculateMode.valueOf(input.getMode());
         } catch (final Exception e) {
-            log.error("Invalid calculate mode: {}", method);
-            throw new InvalidCalculateMethod(String.format("Method %s not allowed", method));
+            log.error("Invalid calculate mode: {}", input.getMode());
+            throw new InvalidCalculateMethod(String.format("Mode %s not allowed", input.getMode()));
         }
-        log.debug("Calculating best itinerary based on model: {}", method);
         return calculateItinerary.calculate(input.getFrom(), input.getTo(), mode);
     }
 }
