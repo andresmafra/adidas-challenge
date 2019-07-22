@@ -1,3 +1,5 @@
+![](https://careers.adidas-group.com/images/external/adidas-dark.svg)
+
 # Adidas Challenge Code
 This solution is based on Eureka as Discovery Service, Spring Cloud, MongoDB as NOSql database and Docker as a PAAS. The architecture is explained on the presentation below:
 * [Solution Architecture](https://slides.com/andrevieiramafra/code-challenge)
