@@ -33,7 +33,7 @@ All the API documentation is served by Swagger. Follow the url below for more in
 http://localhost:8080/swagger-ui.html
 
 ## Samples
-You can access the data samples for fast input [here](https://github.com/andresmafra/adidas-challenge/tree/master/itinerary-manager/src/test/resources/samples.json).
+You can access the itinerary data samples for fast input [here](https://github.com/andresmafra/adidas-challenge/tree/master/itinerary-manager/src/test/resources/samples.json).
 
 ### Postman Collection
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/41e60256e5e04115f730)
