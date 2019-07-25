@@ -1,5 +1,7 @@
 package com.adidas.itinerarymanager.domains;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -13,6 +15,7 @@ import javax.validation.constraints.Pattern;
 public class Itinerary {
 
     @Id
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String id;
 
     @NotBlank(message = "itinerary.city.notBlank")
